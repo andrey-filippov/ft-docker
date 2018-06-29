@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+
+    web:
+        container_name: web-fysiotest
+        build: ./web
+        ports:
+            - "80:80"
+            - "8081:81"
+            - "8082:82"
+        volumes:
+            - ./www/html:/var/www/html
+        links:
+            - db
+        env_file: ./web/.env
+
+    db:
+        image: mongo:3.6
+        ports:
+            - "27020:27017"
+        volumes:
+            - ./data/db/mongo:/data/db
+            - ./db/backups:/backups
+        container_name: db-fysiotest
+        env_file: ./db/.env
