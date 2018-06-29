@@ -1,18 +1,27 @@
 version: "3.4"
 services:
 
-    web:
-        container_name: web-fysiotest
-        build: ./web
+    app:
+        container_name: fysiotest-app
+        build: ./web/app
         ports:
             - "80:80"
-            - "8081:81"
-            - "8082:82"
         volumes:
-            - ./www/html:/var/www/html
+            - ./www/html/fysiotest.local:/var/www/html/fysiotest.local
         links:
             - db
-        env_file: ./web/.env
+        env_file: ./web/app/.env
+
+    api:
+        container_name: fysiotest-api
+        build: ./web/api
+        ports:
+            - "8081:81"
+        volumes:
+            - ./www/html/api.local:/var/www/html/api.local
+        links:
+            - db
+        env_file: ./web/api/.env
 
     db:
         image: mongo:3.6

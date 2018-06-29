@@ -44,9 +44,5 @@ RUN { \
 RUN a2enmod rewrite
 
 COPY ./conf/*.conf /etc/apache2/sites-available/
-RUN echo "Listen 81" >> /etc/apache2/ports.conf
-RUN echo "Listen 82" >> /etc/apache2/ports.conf
 
 RUN a2ensite fysiotest.local.conf
-RUN a2ensite api.local.conf
-RUN a2ensite test.local.conf
