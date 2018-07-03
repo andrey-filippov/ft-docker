@@ -1,7 +1,5 @@
 FROM php:7.2.5-apache
 
-#RUN find /etc/apache2/sites-available/ -type f -and -not -name "*default*" -exec a2ensite {} \;
-
 RUN set -ex; \
 	\
 	apt-get update; \
@@ -44,5 +42,6 @@ RUN { \
 RUN a2enmod rewrite
 
 COPY ./conf/*.conf /etc/apache2/sites-available/
+RUN echo "Listen 8082" >> /etc/apache2/ports.conf
 
 RUN a2ensite fysiotest.local.conf
