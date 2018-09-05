@@ -23,7 +23,7 @@ RUN docker-php-ext-install calendar gettext intl
 RUN docker-php-ext-install json mbstring pdo
 RUN docker-php-ext-install soap zip
 
-RUN pecl install mongodb
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 RUN pecl install xdebug
 
 RUN docker-php-ext-enable xdebug
