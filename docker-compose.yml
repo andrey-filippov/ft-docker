@@ -11,21 +11,17 @@ services:
         links:
             - db
         env_file: ./web/api/.env
-#        networks:
-#            - backend
 
     app:
         container_name: fysiotest-app
         build: ./web/app
         ports:
-            - "8082:8082"
+            - "8082:82"
         volumes:
             - ./www/html/fysiotest.local:/var/www/html/fysiotest.local
         links:
             - db
         env_file: ./web/app/.env
-#        networks:
-#            - backend
 
     db:
         image: mongo:3.6
@@ -36,7 +32,3 @@ services:
             - ./db/backups:/backups
         container_name: db-fysiotest
         env_file: ./db/.env
-
-#networks:
-#    backend:
-#        driver: "bridge"
