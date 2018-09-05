@@ -12,4 +12,5 @@ ssh:
 
 restart: stop start
 
-db: @docker exec -it db-fysiotest bash
+ssh-db:
+	@docker exec -it db-fysiotest bash
